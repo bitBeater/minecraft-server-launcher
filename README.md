@@ -1,6 +1,6 @@
 # Minecraft Server Launcher
 
-A Node.js script for managing and updating Minecraft servers.
+A Deno script for managing and updating Minecraft servers.
 
 ## Introduction
 
