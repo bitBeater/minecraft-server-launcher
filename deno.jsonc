@@ -1,0 +1,13 @@
+{
+    "imports": {
+      "std/": "https://deno.land/std@0.208.0/"
+    },
+    "tasks": {
+      "dev": "deno run --watch src/main.ts"
+    },
+    "compilerOptions": {
+            "strictNullChecks": false
+    }
+
+
+  }
