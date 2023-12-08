@@ -48,9 +48,9 @@ This script automates the management of Minecraft server instances. It facilitat
   ```sh
   ./minecraft_server_launcher <version>
   ```
-- **Install a Specific Server Version**
+- **Install a Server**
   ```sh
-  ./minecraft_server_launcher [-i | --install] <version> <optional: version to copy worlds and configs from>
+  ./minecraft_server_launcher [i | install] <version> <optional: version to copy worlds and configs from>
   ```
 
 ## Additional Information

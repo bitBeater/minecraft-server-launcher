@@ -1,4 +1,6 @@
+import { logger } from "../utils/logger.ts";
 import { getConf } from "./conf.ts";
+import { getVersionManifestV2 } from "./version.ts";
 
 export function getServerInstallationDirs(): string[] {
 
@@ -12,4 +14,14 @@ export function getServerInstallationDirs(): string[] {
     }
 
     return retVal;
+}
+
+
+export async function installMinecraftServer(version: string): Promise<void> {
+    if (version?.trim()?.length)
+        version = (await getVersionManifestV2()).latest.release;
+
+    logger.info(`Installing Minecraft Server version ${version}...`);
+
+    return Promise.resolve();
 }
