@@ -25,3 +25,7 @@ export async function installMinecraftServer(version: string): Promise<void> {
 
     return Promise.resolve();
 }
+
+export function isServerInstalled(version: string): boolean {
+    return getServerInstallationDirs().includes(version.trim());
+}

@@ -5,19 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ts-node",
-            "type": "node",
             "request": "launch",
-            "args": [
-                "${relativeFile}"
-            ],
+            "name": "Launch Program",
+            "type": "node",
+            "program": "${workspaceFolder}/src/main.ts",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "/home/alex/.deno/bin/deno",
             "runtimeArgs": [
-                "-r",
-                "${workspaceRoot}/node_modules/ts-node/register/transpile-only.js"
+                "run",
+                "--unstable",
+                "--config",
+                "deno.jsonc",
+                "--inspect-wait",
+                "--allow-all"
             ],
-            "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
-            "internalConsoleOptions": "openOnSessionStart"
+            "args": ["run", "-d"],
+            "console": "integratedTerminal",
+            "attachSimplePort": 9229,
         }
     ]
 }
