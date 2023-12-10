@@ -1,18 +1,15 @@
-import ProgressBar from 'https://deno.land/x/progress@v1.4.0/mod.ts';
-import { downloadMinecraftServer, getMinecraftServerWritableStream } from '../data/minecraftServer.ts';
-import { existsServerProperties, writeServerProperties } from '../data/serverProperties.ts';
-import { getVersionManifestV2, getVersionPackages } from '../data/version.ts';
-import { VersionNotFoundManifestV2 } from './../errors/minecraftVersionNotFound.ts';
-import { logger } from './../utils/logger.ts';
+import { downloadMinecraftServer, getMinecraftServerWritableStream } from 'data/minecraftServer.ts';
+import { existsServerProperties, writeServerProperties } from 'data/serverProperties.ts';
+import { getVersionManifestV2, getVersionPackages } from 'data/version.ts';
+import { VersionNotFoundManifestV2 } from 'errors/minecraftVersionNotFound.ts';
+import ProgressBar from 'progress';
+import { logger } from 'utils/logger.ts';
 
 
-export async function installMinecraftServer(version?: string): Promise<void> {
+export async function installMinecraftServer(version: string): Promise<void> {
     const versionManifestV2 = await getVersionManifestV2();
-
-    if (version)
-        version = versionManifestV2.latest.release;
-
     const versionPackagesUrl = versionManifestV2.versions.find(v => v.id === version)?.url;
+
     if (!versionPackagesUrl)
         throw new VersionNotFoundManifestV2(version);
 

@@ -1,6 +1,6 @@
-import { Packages } from "../types/packages.ts";
-import { VersionManifestV2 } from "../types/versionManifestV2.ts";
-import { getConf } from "./conf.ts";
+import { getConf } from 'data/conf.ts';
+import { Packages } from 'types/packages.ts';
+import { VersionManifestV2 } from 'types/versionManifestV2.ts';
 
 
 

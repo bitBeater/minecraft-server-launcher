@@ -1,13 +1,13 @@
 import { Command } from 'https://deno.land/x/cliffy@v1.0.0-rc.3/command/mod.ts';
-import { log } from "npm:iggs-utils@1.2.16";
+import { log } from 'npm:iggs-utils@1.2.16';
 import { install } from './cli/install.ts';
-import { migrate } from "./cli/migrate.ts";
+import { migrate } from './cli/migrate.ts';
 import { run } from './cli/run.ts';
-import { update } from "./cli/update.ts";
-import { listAvailableVersions, listInstalledVersions } from "./cli/version.ts";
+import { update } from './cli/update.ts';
+import { listAvailableVersions, listInstalledVersions } from './cli/version.ts';
 import { getConf } from './data/conf.ts';
 import { existsSync } from './utils/fs.ts';
-import { logger } from "./utils/logger.ts";
+import { logger } from './utils/logger.ts';
 
 
 /**
@@ -78,18 +78,22 @@ await new Command()
   // install
   .command('install', 'i')
   .arguments('[install_version:string] [migration_version:string]')
+  .description('Install a minecraft server specified by version. If no version is specified, the lastest available version will be installed.')
   .action(install)
 
   // migrate
   .command('migrate', 'm')
   .arguments('[version_from:string] [version_to:string]')
+  .description('Migrate worlds and configs from one version to another.')
   .action(migrate)
 
   // list installed servers
   .command('list', 'l')
+  .description('List installed servers.')
   .action(listInstalledVersions)
 
   // list available servers
   .command('list-available', 'la')
+  .description('List available servers.')
   .action(listAvailableVersions)
   .parse(Deno.args);

@@ -1,5 +1,5 @@
-import { getVersionManifestV2 } from '../data/version.ts';
-import { getInstalledVersions } from '../services/version.ts';
+import { getVersionManifestV2 } from 'data/version.ts';
+import { getInstalledVersions } from 'services/version.ts';
 
 export function listInstalledVersions() {
     const versions = getInstalledVersions();

@@ -1,14 +1,28 @@
 {
     "imports": {
-      "std/": "https://deno.land/std@0.208.0/"
+      "std/": "https://deno.land/std@0.208.0/",
+      "cliffy/": "https://deno.land/x/cliffy@v1.0.0-rc.3/",
+      "data/": "./src/data/",
+      "cli/": "./src/cli/",
+      "utils/": "./src/utils/",
+      "types/": "./src/types/",
+      "services/": "./src/services/",
+      "errors/": "./src/errors/",
+      "semver": "https://deno.land/x/semver@v1.4.1/mod.ts",
+      "progress": "https://deno.land/x/progress@v1.4.0/mod.ts",
+      "iggs-utils": "npm:iggs-utils@1.2.16",
+      "testing-utils": "./tests/utils.ts",
       
     },
     "tasks": {
-      "dev": "deno run --watch src/main.ts"
+      "test": "cd ./tests && deno test -A --parallel"
     },
     "compilerOptions": {
             "strictNullChecks": false
     },
+    "test": {
+      
+    }
 
 
   }

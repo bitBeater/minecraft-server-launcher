@@ -1,8 +1,8 @@
+import { getConf } from 'data/conf.ts';
 import { join } from 'https://deno.land/std@0.134.0/path/mod.ts';
 import ProgressBar from 'https://deno.land/x/progress@v1.4.0/mod.ts';
+import { logger } from 'utils/logger.ts';
 import { JAR_SERVER } from '../consts.ts';
-import { getConf } from '../data/conf.ts';
-import { logger } from './../utils/logger.ts';
 
 
 export function migrate(fromVersion: string, toVersion: string) {

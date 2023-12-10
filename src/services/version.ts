@@ -1,7 +1,5 @@
-import { valid as isValidSemver, maxSatisfying } from "https://deno.land/x/semver/mod.ts";
-import { gt } from 'https://deno.land/x/semver@v1.4.1/mod.ts';
-import { getServerInstallationDirs } from "../data/installation.ts";
-
+import { getServerInstallationDirs } from 'data/installation.ts';
+import { gt, valid as isValidSemver, lt, maxSatisfying } from 'semver';
 
 /**
  * 
@@ -15,4 +13,10 @@ export function getInstalledVersions() {
 export function getLatestInstalledVersion(): string {
     const installedVersions = getInstalledVersions();
     return maxSatisfying(installedVersions, '*');
+}
+
+export function getPreviousVersion(baseVersion: string) {
+    const installedVersions = getInstalledVersions();
+    for (const version of installedVersions)
+        if (lt(version, baseVersion)) return version;
 }

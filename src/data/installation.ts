@@ -1,6 +1,6 @@
-import { logger } from "../utils/logger.ts";
-import { getConf } from "./conf.ts";
-import { getVersionManifestV2 } from "./version.ts";
+import { getConf } from 'data/conf.ts';
+import { getVersionManifestV2 } from 'data/version.ts';
+import { logger } from 'utils/logger.ts';
 
 export function getServerInstallationDirs(): string[] {
 
@@ -27,5 +27,5 @@ export async function installMinecraftServer(version: string): Promise<void> {
 }
 
 export function isServerInstalled(version: string): boolean {
-    return getServerInstallationDirs().includes(version.trim());
+    return getServerInstallationDirs().includes(version);
 }

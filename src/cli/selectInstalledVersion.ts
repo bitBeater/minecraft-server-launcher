@@ -1,15 +1,22 @@
-import { Select } from 'https://deno.land/x/cliffy@v1.0.0-rc.3/prompt/select.ts';
-import { getInstalledVersions } from '../services/version.ts';
+import { GenericListOption } from 'cliffy/prompt/_generic_list.ts';
+import { Select } from 'cliffy/prompt/select.ts';
+import { getInstalledVersions } from 'services/version.ts';
 
+export async function selectInstalledVersion(opt: { message?: string, default?: string, options?: string[], ommit?: string[] }): Promise<string> {
 
-export async function selectInstalledVersion(message = 'Select a version', preSelectedVersion?: string): Promise<string> {
-    const installedVersions = getInstalledVersions();
-    const options = installedVersions.map(version => ({ name: version, value: version }));
+    const defaultSelected: GenericListOption<string> = { name: 'None', value: undefined };
+    const message = opt?.message || 'Select a version';
+    const selectList = opt?.options || getInstalledVersions();
+    const options = selectList
+        .filter(i => !opt?.ommit?.includes(i))
+        .map(version => ({ name: version, value: version }));
+
     options.push({ name: 'None', value: undefined });
 
-    return Select.prompt({
+
+    return Select.prompt<GenericListOption<string>>({
         message,
         options,
-        default: { name: preSelectedVersion, value: preSelectedVersion }
+        default: defaultSelected
     }).then(selected => selected.value);
 }

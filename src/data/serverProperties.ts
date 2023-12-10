@@ -1,7 +1,7 @@
-import { join, resolve } from 'https://deno.land/std@0.196.0/path/mod.ts';
-import { existsSync } from '../utils/fs.ts';
-import { logger } from './../utils/logger.ts';
-import { getConf } from './conf.ts';
+import { getConf } from 'data/conf.ts';
+import { join, resolve } from 'std/path/mod.ts';
+import { existsSync } from 'utils/fs.ts';
+import { logger } from 'utils/logger.ts';
 
 export function existsServerProperties(version: string): boolean {
     const serverConfigPath = join(getConf().serverInstallationDir, version, 'server.properties');

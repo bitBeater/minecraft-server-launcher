@@ -1,7 +1,7 @@
 
-import { join } from "https://deno.land/std@0.134.0/path/mod.ts";
-import { MinecraftServerLauncherConf } from "./types/conf.ts";
-import { getOsAppInstallPath } from "./utils/os_paths.ts";
+import { join } from 'std/path/mod.ts';
+import { MinecraftServerLauncherConf } from 'types/conf.ts';
+import { getOsAppInstallPath } from 'utils/os_paths.ts';
 
 
 export const CONFIG_FILE_PATH = './config.json';

@@ -1,6 +1,6 @@
-import { CONFIG_FILE_PATH, DEFAULT_CONFIG } from "../consts.ts";
-import { MinecraftServerLauncherConf } from '../types/conf.ts';
-import { existsSync } from "../utils/fs.ts";
+import { MinecraftServerLauncherConf } from 'types/conf.ts';
+import { CONFIG_FILE_PATH, DEFAULT_CONFIG } from 'utils/consts.ts';
+import { existsSync } from 'utils/fs.ts';
 
 
 export function getConf(): MinecraftServerLauncherConf {

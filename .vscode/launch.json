@@ -2,26 +2,46 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+    'version': '0.2.0',
+    'configurations': [
         {
-            "request": "launch",
-            "name": "Launch Program",
-            "type": "node",
-            "program": "${workspaceFolder}/src/main.ts",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "/home/alex/.deno/bin/deno",
-            "runtimeArgs": [
-                "run",
-                "--unstable",
-                "--config",
-                "deno.jsonc",
-                "--inspect-wait",
-                "--allow-all"
+            'request': 'launch',
+            'name': 'Launch Program',
+            'type': 'node',
+            'program': '${workspaceFolder}/src/main.ts',
+            'cwd': '${workspaceFolder}',
+            'runtimeExecutable': '/home/alex/.deno/bin/deno',
+            'runtimeArgs': [
+                'run',
+                '--unstable',
+                '--config',
+                'deno.jsonc',
+                '--inspect-wait',
+                '--allow-all'
             ],
-            "args": ["run", "-d"],
-            "console": "integratedTerminal",
-            "attachSimplePort": 9229,
+            'args': ['run', '-d'],
+            'console': 'integratedTerminal',
+            'attachSimplePort': 9229,
+        },
+        {
+            'request': 'launch',
+            'name': 'Launch test file',
+            'type': 'node',
+            'program': '${file}',
+            'cwd': '${workspaceFolder}/tests',
+            'runtimeExecutable': '/home/alex/.deno/bin/deno',
+            'runtimeArgs': [
+                'test',
+                '--unstable',
+                '--config',
+                '${workspaceFolder}/deno.jsonc',
+                '--inspect-wait',
+                '--inspect-brk',
+                '--allow-all'
+            ],
+            // 'args': ['run', '-d'],
+            // 'console': 'internalConsole',
+            'attachSimplePort': 9229,
         }
     ]
 }

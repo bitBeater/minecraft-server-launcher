@@ -1,8 +1,8 @@
-import { join } from 'https://deno.land/std@0.196.0/path/mod.ts';
-import { JAR_SERVER } from '../consts.ts';
-import { MinecraftServerDownloadError } from '../errors/minecraftServerDownloadFailed.ts';
-import { existsSync } from '../utils/fs.ts';
-import { getConf } from './conf.ts';
+import { getConf } from 'data/conf.ts';
+import { MinecraftServerDownloadError } from 'errors/minecraftServerDownloadFailed.ts';
+import { join } from 'std/path/mod.ts';
+import { JAR_SERVER } from 'utils/consts.ts';
+import { existsSync } from 'utils/fs.ts';
 
 export async function downloadMinecraftServer(url: string): Promise<ReadableStream<Uint8Array>> {
     return fetch(url).then(
