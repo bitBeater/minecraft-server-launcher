@@ -5,15 +5,14 @@ import { getOsAppInstallPath } from 'utils/os_paths.ts';
 
 
 export const CONFIG_FILE_PATH = './config.json';
-// export const SERVER_LAUNCH_SCRIPT = `start.sh`;
 export const JAR_SERVER = `server.jar`;
-const VERSION_MANIFEST_V2_URL = `https://piston-meta.mojang.com/mc/game/version_manifest_v2.json`;
+
 const SERVER_INSTALLATION_DIR = join(getOsAppInstallPath(), 'alexrr2iggs', 'minecraft_server');
 
 
 export const DEFAULT_CONFIG: MinecraftServerLauncherConf = {
     serverInstallationDir: SERVER_INSTALLATION_DIR,
-    versionManifestV2Url: VERSION_MANIFEST_V2_URL,
+    versionManifestV2Url: 'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',
     launchArgs: {
         default: {
             javaArgs: [

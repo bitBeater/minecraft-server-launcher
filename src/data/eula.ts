@@ -8,10 +8,12 @@ export function existsEula(version: string): boolean {
     return existsSync(eulaPath);
 }
 
-export function writeEula(version: string) {
+export function writeEula(version: string): string {
     const eulaPath = resolve(join(getConf().serverInstallationDir, version, 'eula.txt'));
     const eula = `#${new Date().toUTCString()}\neula=true`
 
     logger.debug('writing eula.txt', eulaPath);
     writeFileAndDir(eulaPath, eula, { createNew: true });
+
+    return eula;
 }
