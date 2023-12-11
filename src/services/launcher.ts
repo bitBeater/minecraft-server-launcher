@@ -1,13 +1,13 @@
 import { getConf } from 'data/conf.ts';
 import { getLatestInstalledVersion } from 'services/version.ts';
 import { join } from 'std/path/mod.ts';
-import { JAR_SERVER } from 'utils/consts.ts';
+import { JAR_SERVER_FILE_NAME } from 'utils/consts.ts';
 import { logger } from 'utils/logger.ts';
 
 export function launchMinecraftServer(version = getLatestInstalledVersion()) {
     const conf = getConf();
     const launchArgs = conf.launchArgs[version] || conf.launchArgs.default;
-    const jarServerPath = join(conf.serverInstallationDir, version, JAR_SERVER);
+    const jarServerPath = join(conf.serverInstallationDir, version, JAR_SERVER_FILE_NAME);
     const args = [...launchArgs.javaArgs, '-jar', jarServerPath, ...launchArgs.serverArgs];
 
     logger.info(`launching server version ${version}`);

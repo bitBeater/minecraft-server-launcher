@@ -15,14 +15,10 @@
       
     },
     "tasks": {
-      "test": "cd ./tests && deno test -A --parallel"
+      "test": "cd ./tests && deno test -A --unstable",
     },
     "compilerOptions": {
-            "strictNullChecks": false
-    },
-    "test": {
-      
+            "strictNullChecks": false,
+            
     }
-
-
   }

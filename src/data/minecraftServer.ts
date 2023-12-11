@@ -1,7 +1,7 @@
 import { getConf } from 'data/conf.ts';
 import { MinecraftServerDownloadError } from 'errors/minecraftServerDownloadFailed.ts';
 import { join } from 'std/path/mod.ts';
-import { JAR_SERVER } from 'utils/consts.ts';
+import { JAR_SERVER_FILE_NAME } from 'utils/consts.ts';
 import { existsSync } from 'utils/fs.ts';
 
 /**
@@ -13,8 +13,10 @@ import { existsSync } from 'utils/fs.ts';
 export async function downloadMinecraftServer(url: string): Promise<ReadableStream<Uint8Array>> {
     return fetch(url).then(
         res => {
-            if (!res.ok)
-                throw new MinecraftServerDownloadError(res);
+            if (!res.ok) {
+                res.body?.cancel();
+                return Promise.reject(new MinecraftServerDownloadError(res));
+            }
             return res.body;
         }
     );
@@ -33,7 +35,7 @@ export function getMinecraftServerWritableStream(version: string): WritableStrea
     if (!existsSync(serverInstallationDir))
         Deno.mkdirSync(serverInstallationDir, { recursive: true });
 
-    const serverInstallationPath = join(serverInstallationDir, JAR_SERVER);
+    const serverInstallationPath = join(serverInstallationDir, JAR_SERVER_FILE_NAME);
 
     return Deno.openSync(serverInstallationPath, {
         create: true,

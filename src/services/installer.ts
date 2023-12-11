@@ -1,5 +1,5 @@
 import { downloadMinecraftServer, getMinecraftServerWritableStream } from 'data/minecraftServer.ts';
-import { existsServerProperties, writeServerProperties } from 'data/serverProperties.ts';
+import { existsServerProperties, writeDefaultServerProperties } from 'data/serverProperties.ts';
 import { getVersionManifestV2, getVersionPackages } from 'data/version.ts';
 import { VersionNotFoundManifestV2 } from 'errors/minecraftVersionNotFound.ts';
 import ProgressBar from 'progress';
@@ -34,7 +34,7 @@ export async function installMinecraftServer(version: string): Promise<void> {
     minecraftServerWriter.releaseLock();
 
     if (!existsServerProperties(version))
-        writeServerProperties(version);
+        writeDefaultServerProperties(version);
 
     logger.info('successfully installed', version, 'server');
     return Promise.resolve();

@@ -1,4 +1,6 @@
+import { getConf } from "data/conf.ts";
 import { join, resolve } from 'std/path/mod.ts';
+import { SERVER_PROPERTIES_FILE_NAME } from "utils/consts.ts";
 export function existsSync(path: string): boolean {
     try {
         Deno.statSync(path);
@@ -28,3 +30,19 @@ export function writeFileAndDir(path: string, data: Uint8Array | string, options
     data = typeof data === 'string' ? new TextEncoder().encode(data) : data;
     Deno.writeFileSync(path, data, options);
 }
+
+/**
+ * Joins and resolves all arguments into an absolute path.
+ * 
+ * @param pathParts - The path parts to join and resolve.
+ * @returns The resolved absolute path.
+ */
+export function resolvePath(...pathParts: string[]): string {
+    return resolve(join(...pathParts));
+}
+
+
+export function getServerPropertiesPath(version: string): string {
+    return resolvePath(getConf().serverInstallationDir, version, SERVER_PROPERTIES_FILE_NAME);
+}
+

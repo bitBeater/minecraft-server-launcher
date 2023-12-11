@@ -1,14 +1,16 @@
 
-import { join } from 'std/path/mod.ts';
+import { resolve } from 'std/path/resolve.ts';
 import { MinecraftServerLauncherConf } from 'types/conf.ts';
+import { resolvePath } from 'utils/fs.ts';
 import { getOsAppInstallPath } from 'utils/os_paths.ts';
 
 
-export const CONFIG_FILE_PATH = './config.json';
-export const JAR_SERVER = `server.jar`;
-
-const SERVER_INSTALLATION_DIR = join(getOsAppInstallPath(), 'alexrr2iggs', 'minecraft_server');
-
+export const JAR_SERVER_FILE_NAME = 'server.jar';
+export const SERVER_PROPERTIES_FILE_NAME = 'server.properties'
+export const CONFIG_FILE_PATH = resolve('./config.json');
+export const ASSETS_DIR = resolve('./assets');
+export const DEFAULT_SERVER_PROPERTIES_PATH = resolvePath(ASSETS_DIR, SERVER_PROPERTIES_FILE_NAME);
+const SERVER_INSTALLATION_DIR = resolvePath(getOsAppInstallPath(), 'alexrr2iggs', 'minecraft_server');
 
 export const DEFAULT_CONFIG: MinecraftServerLauncherConf = {
     serverInstallationDir: SERVER_INSTALLATION_DIR,
