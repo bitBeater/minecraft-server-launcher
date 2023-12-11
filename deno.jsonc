@@ -16,6 +16,8 @@
     },
     "tasks": {
       "test": "cd ./tests && deno test -A --unstable",
+      "check": "deno run --allow-read --allow-write scripts/check.ts",
+      "gtests": "deno run --allow-read --allow-write scripts/generateTestFiles.ts",
     },
     "compilerOptions": {
             "strictNullChecks": false,

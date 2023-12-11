@@ -1,8 +1,7 @@
 
 import { resolve } from 'std/path/resolve.ts';
 import { MinecraftServerLauncherConf } from 'types/conf.ts';
-import { resolvePath } from 'utils/fs.ts';
-import { getOsAppInstallPath } from 'utils/os_paths.ts';
+import { getOsAppInstallPath, resolvePath } from 'utils/fs.ts';
 
 
 export const JAR_SERVER_FILE_NAME = 'server.jar';

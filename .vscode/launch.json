@@ -25,6 +25,23 @@
         },
         {
             "request": "launch",
+            "name": "Launch file",
+            "type": "node",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "/home/alex/.deno/bin/deno",
+            "runtimeArgs": [
+                "run",
+                "--unstable",
+                "--config",
+                "deno.jsonc",
+                "--inspect-wait",
+                "--allow-all"
+            ],
+            "attachSimplePort": 9229,
+        },
+        {
+            "request": "launch",
             "name": "Launch test file",
             "type": "node",
             "program": "${file}",

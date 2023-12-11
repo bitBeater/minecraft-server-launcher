@@ -1,5 +1,5 @@
 import { existsServerProperties, writeDefaultServerProperties } from 'data/serverProperties.ts';
-import { assertEquals } from 'std/assert/asserts.ts';
+import { assertEquals } from 'std/assert/assert_equals.ts';
 import { afterEach, beforeEach, describe, it } from 'std/testing/bdd.ts';
 import { clearTmpDir } from 'testing-utils';
 import { DEFAULT_SERVER_PROPERTIES_PATH } from 'utils/consts.ts';
