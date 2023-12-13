@@ -1,4 +1,4 @@
-
+// @skip-test
 import { Input } from 'cliffy/prompt/mod.ts';
 import { valid } from 'semver';
 

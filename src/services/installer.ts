@@ -29,7 +29,7 @@ export async function installMinecraftServer(version: string): Promise<void> {
         completed += chunk.length;
         progressBar.render(completed);
     }
-
+    progressBar.end();
     await minecraftServerWriter.close();
     minecraftServerWriter.releaseLock();
 
@@ -40,3 +40,4 @@ export async function installMinecraftServer(version: string): Promise<void> {
     return Promise.resolve();
 }
 
+export const _internals = { installMinecraftServer };

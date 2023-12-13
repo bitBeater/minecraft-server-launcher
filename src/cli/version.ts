@@ -1,3 +1,4 @@
+// @skip-test
 import { getVersionManifestV2 } from 'data/version.ts';
 import { getInstalledVersions } from 'services/version.ts';
 

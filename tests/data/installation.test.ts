@@ -2,9 +2,8 @@ import { getConf } from 'data/conf.ts';
 import { getServerInstallationDirs, isServerInstalled } from 'data/installation.ts';
 import { assertEquals } from "std/assert/assert_equals.ts";
 import { join } from "std/path/mod.ts";
-
 import { afterAll, beforeEach, describe, it } from 'std/testing/bdd.ts';
-import { clearTmpDir } from "testing-utils";
+import { clearTmpDir } from "../test_utils/utils.ts";
 
 describe('getServerInstallationDirs', () => {
 

@@ -1,3 +1,4 @@
+// @skip-test
 
 import { acceptEula } from 'cli/eula.ts';
 import { migrate } from 'cli/migrate.ts';
@@ -9,32 +10,33 @@ import { installMinecraftServer } from 'services/installer.ts';
 import { getInstalledVersions } from 'services/version.ts';
 import { validateSemver } from 'utils/validators.ts';
 
+export async function install(options?: any, ...args: string[]) {
+ const lattestAvailableVersion = (await getVersionManifestV2()).latest.release;
+ const versionToInstall = args?.[0]?.trim() || lattestAvailableVersion;
+ let versionToMigrate = args?.[1]?.trim();
+ console.log('installing version', versionToInstall);
 
-export async function install(options: any, ...args: string[]) {
-    const lattestAvailableVersion = (await getVersionManifestV2()).latest.release;
-    const versionToInstall = args?.[0]?.trim() || lattestAvailableVersion;
-    let versionToMigrate = args?.[1]?.trim();
-    console.log('installing version', versionToInstall);
+ if (versionToInstall && !validateSemver(versionToInstall)) {
+  throw new InvalidSemver(versionToInstall);
+ }
 
+ if (versionToMigrate && !validateSemver(versionToMigrate)) {
+  throw new InvalidSemver(versionToMigrate);
+ }
 
-    if (versionToInstall && !validateSemver(versionToInstall))
-        throw new InvalidSemver(versionToInstall);
+ // TODO:is this check necessary?
+ if (isServerInstalled(versionToInstall)) {
+  const installResponse = await Confirm.prompt(`Server ${versionToInstall}  is already installed. re-install?`);
+  if (!installResponse) return;
+ }
 
-    if (versionToMigrate && !validateSemver(versionToMigrate))
-        throw new InvalidSemver(versionToMigrate);
+ await installMinecraftServer(versionToInstall);
 
-    // TODO:is this check necessary?
-    if (isServerInstalled(versionToInstall)) {
-        const installResponse = await Confirm.prompt(`Server ${versionToInstall}  is already installed. re-install?`);
-        if (!installResponse) return;
-    }
+ console.log('Successfully installed versions', versionToInstall);
 
-    await installMinecraftServer(versionToInstall);
+ if (getInstalledVersions().length > 1) {
+  await migrate(undefined, versionToMigrate, versionToInstall);
+ }
 
-    console.log('Successfully installed versions', versionToInstall);
-
-    if (getInstalledVersions().length > 1)
-        await migrate(undefined, versionToMigrate, versionToInstall);
-
-    acceptEula(versionToInstall);
+ await acceptEula(versionToInstall);
 }

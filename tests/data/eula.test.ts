@@ -10,7 +10,7 @@ import {
     describe,
     it
 } from 'std/testing/bdd.ts';
-import { clearTmpDir } from 'testing-utils';
+import { clearTmpDir } from '../test_utils/utils.ts';
 
 
 

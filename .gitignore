@@ -133,3 +133,7 @@ dist
 
 #deno
 deno.lock
+
+scripts
+.tmp
+tests/tmp/

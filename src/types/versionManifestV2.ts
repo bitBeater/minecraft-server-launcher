@@ -9,11 +9,11 @@ export interface Latest {
 }
 
 export interface Version {
-    id: string
-    type: string
-    url: string
-    time: string
-    releaseTime: string
-    sha1: string
-    complianceLevel: number
+    id?: string
+    type?: string
+    url?: string
+    time?: string
+    releaseTime?: string
+    sha1?: string
+    complianceLevel?: number
 }

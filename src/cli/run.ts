@@ -1,4 +1,4 @@
-
+// @skip-test
 import { acceptEula } from 'cli/eula.ts';
 import { install } from 'cli/install.ts';
 import { isServerInstalled } from 'data/installation.ts';

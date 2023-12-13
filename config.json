@@ -1,5 +1,5 @@
 {
-  "serverInstallationDir": "/home/alex/tmp/minecraft_server_test",
+  "serverInstallationDir": ".tmp/minecraft_server_test",
   "versionManifestV2Url": "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json",
   "launchArgs": {
     "default": {
@@ -16,7 +16,7 @@
         "-XX:+UnlockExperimentalVMOptions",
         "-XX:+OptimizeStringConcat"
       ],
-      "serverArgs": ["--port=6666", "--nogui"]
+      "serverArgs": ["--nogui"]
     }
   }
 }

@@ -1,26 +1,30 @@
 {
-    "imports": {
-      "std/": "https://deno.land/std@0.208.0/",
-      "cliffy/": "https://deno.land/x/cliffy@v1.0.0-rc.3/",
-      "data/": "./src/data/",
-      "cli/": "./src/cli/",
-      "utils/": "./src/utils/",
-      "types/": "./src/types/",
-      "services/": "./src/services/",
-      "errors/": "./src/errors/",
-      "semver": "https://deno.land/x/semver@v1.4.1/mod.ts",
-      "progress": "https://deno.land/x/progress@v1.4.0/mod.ts",
-      "iggs-utils": "npm:iggs-utils@1.2.16",
-      "testing-utils": "./tests/utils.ts",
-      
-    },
-    "tasks": {
-      "test": "cd ./tests && deno test -A --unstable",
-      "check": "deno run --allow-read --allow-write scripts/check.ts",
-      "gtests": "deno run --allow-read --allow-write scripts/generateTestFiles.ts",
-    },
-    "compilerOptions": {
-            "strictNullChecks": false,
-            
-    }
-  }
+ "imports": {
+  "std/": "https://deno.land/std@0.208.0/",
+  "cliffy/": "https://deno.land/x/cliffy@v1.0.0-rc.3/",
+  "data/": "./src/data/",
+  "cli/": "./src/cli/",
+  "utils/": "./src/utils/",
+  "types/": "./src/types/",
+  "services/": "./src/services/",
+  "errors/": "./src/errors/",
+  "semver": "https://deno.land/x/semver@v1.4.1/mod.ts",
+  "progress": "https://deno.land/x/progress@v1.4.0/mod.ts",
+  "iggs-utils": "npm:iggs-utils@1.2.16",
+  "testing-utils": "./tests/utils.ts"
+ },
+ "tasks": {
+  "test": "clear && cd ./tests && deno test -A --unstable --trace-ops",
+  "check": "deno run --allow-read --allow-write scripts/check.ts",
+  "gtests": "deno run --allow-read --allow-write scripts/generateTestFiles.ts"
+ },
+ "compilerOptions": {
+  "strictNullChecks": false
+ },
+ "fmt": {
+  "semiColons": true,
+  "singleQuote": true,
+  "lineWidth": 160,
+  "indentWidth": 1
+ }
+}

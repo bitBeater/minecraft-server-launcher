@@ -1,12 +1,12 @@
 import { getServerInstallationDirs } from 'data/installation.ts';
-import { gt, valid as isValidSemver, lt, maxSatisfying } from 'semver';
+import { valid as isValidSemver, lt, maxSatisfying } from 'semver';
 
 /**
  * 
  * @returns all installed versions sorted from latest to oldest
  */
 export function getInstalledVersions() {
-    return getServerInstallationDirs().filter(i => isValidSemver(i)).sort((v1, v2) => gt(v1, v2) ? 1 : -1);
+    return getServerInstallationDirs().filter(i => isValidSemver(i)).sort((v1, v2) => lt(v1, v2) ? 1 : -1);
 }
 
 

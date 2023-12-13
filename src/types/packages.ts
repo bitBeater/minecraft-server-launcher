@@ -1,18 +1,18 @@
 export interface Packages {
-    arguments: Arguments
-    assetIndex: AssetIndex
-    assets: string
-    complianceLevel: number
-    downloads: Downloads
-    id: string
-    javaVersion: JavaVersion
-    libraries: Library[]
-    logging: Logging
-    mainClass: string
-    minimumLauncherVersion: number
-    releaseTime: string
-    time: string
-    type: string
+    arguments?: Arguments
+    assetIndex?: AssetIndex
+    assets?: string
+    complianceLevel?: number
+    downloads?: Downloads
+    id?: string
+    javaVersion?: JavaVersion
+    libraries?: Library[]
+    logging?: Logging
+    mainClass?: string
+    minimumLauncherVersion?: number
+    releaseTime?: string
+    time?: string
+    type?: string
 }
 
 export interface Arguments {

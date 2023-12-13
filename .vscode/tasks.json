@@ -1,0 +1,24 @@
+{
+ "tasks": [
+  {
+   "label": "Run Current file",
+   "type": "deno",
+   "console": "integratedTerminal",
+   "command": "run",
+   "args": [
+    "--unstable",
+    "-A",
+    "${file}"
+   ],
+   "options": {
+    "cwd": "${fileDirname}"
+   },
+   "presentation": {
+    "clear": true,
+    "panel": "dedicated",
+    "reveal": "always",
+    "showReuseMessage": false
+   }
+  }
+ ]
+}

@@ -1,3 +1,4 @@
+// @skip-test
 import { selectInstalledVersion } from 'cli/selectInstalledVersion.ts';
 import { InvalidSemver } from 'errors/invalidSemver.ts';
 import { migrate as doMigration } from 'services/migration.ts';
