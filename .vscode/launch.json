@@ -19,7 +19,9 @@
     "--inspect-wait",
     "--allow-all"
    ],
-   "args": ["run", "-d"],
+   "env": {
+    "DENO_ENV": "production"
+   },
    "console": "integratedTerminal",
    "attachSimplePort": 9229
   },
@@ -38,6 +40,9 @@
     "--inspect-wait",
     "--allow-all"
    ],
+   "env": {
+    "DENO_ENV": "production"
+   },
    "attachSimplePort": 9229
   },
   {
@@ -56,6 +61,9 @@
     "--inspect-brk",
     "--allow-all"
    ],
+   //    "env": {
+   //     "DENO_ENV": "development"
+   //    },
    // "args": ["run", "-d"],
    // "console": "internalConsole",
    "attachSimplePort": 9229

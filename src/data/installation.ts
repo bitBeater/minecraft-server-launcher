@@ -1,4 +1,4 @@
-import { getConf } from 'data/conf.ts';
+import { appConfig } from 'utils/config.ts';
 
 /**
  * Retrieves the list of server installation directories.
@@ -9,7 +9,7 @@ export function getServerInstallationDirs(): string[] {
  const retVal: string[] = [];
 
  try {
-  const dirs = Deno.readDirSync(getConf().serverInstallationDir);
+  const dirs = Deno.readDirSync(appConfig.serverInstallationDir);
   for (const dir of dirs) {
    if (dir.isDirectory) {
     retVal.push(dir.name);

@@ -1,8 +1,8 @@
-import { getSysConf, getUsrConf, setUsrConf } from 'data/conf.ts';
 import { assertEquals } from 'std/assert/assert_equals.ts';
 import { afterAll, beforeAll, beforeEach, describe, it } from 'std/testing/bdd.ts';
 import { SYS_CONFIG_FILE_PATH, USR_CONFIG_FILE_PATH } from 'utils/paths.ts';
 
+import { getConf } from 'services/conf.ts';
 import { MinecraftServerLauncherConf } from 'types/conf.ts';
 
 //setUsrConf
@@ -56,20 +56,21 @@ describe('conf', () => {
   Deno.writeFileSync(SYS_CONFIG_FILE_PATH, sysConf);
  });
 
- it('getUsrConf: should return the user configuration', () => {
-  const readedConf = getUsrConf();
+ it('getConf: should return the user configuration, if sysConf doesnt exists', () => {
+  Deno.removeSync(SYS_CONFIG_FILE_PATH);
+  const readedConf = getConf();
   assertEquals(readedConf, usrTestConf);
  });
 
- it('setUsrConf: should write the user configuration', () => {
-  const editedConf = { ...usrConf, serverInstallationDir: 'edited' };
-  setUsrConf(editedConf);
-  const readedConf = JSON.parse(Deno.readTextFileSync(USR_CONFIG_FILE_PATH));
-  assertEquals(readedConf, editedConf);
+ it('getConf: should return the system configuration, if usrConf doesnt exists', () => {
+  Deno.removeSync(USR_CONFIG_FILE_PATH);
+  const readedConf = getConf();
+  assertEquals(readedConf, sysTestConf);
  });
 
- it('getSysConf: should return the system configuration', () => {
-  const readedConf = getSysConf();
-  assertEquals(readedConf, sysTestConf);
+ it('getConf: should return system conf with properties ovverrided by valued usrConf properties', () => {
+  const readedConf = getConf();
+  assertEquals(readedConf.serverInstallationDir, usrTestConf.serverInstallationDir);
+  assertEquals(readedConf.versionManifestV2Url, sysTestConf.versionManifestV2Url);
  });
 });

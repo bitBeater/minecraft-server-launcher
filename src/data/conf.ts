@@ -1,11 +1,18 @@
-import { existsSync } from 'std/fs/exists.ts';
 import { MinecraftServerLauncherConf } from 'types/conf.ts';
-import { CONFIG_FILE_PATH, DEFAULT_CONFIG } from 'utils/consts.ts';
+import { writeFileAndDir } from 'utils/fs.ts';
+import { logger } from 'utils/logger.ts';
+import { SYS_CONFIG_FILE_PATH, USR_CONFIG_FILE_PATH } from 'utils/paths.ts';
 
-export function getConf(): MinecraftServerLauncherConf {
- if (!existsSync(CONFIG_FILE_PATH)) {
-  Deno.writeTextFileSync(CONFIG_FILE_PATH, JSON.stringify(DEFAULT_CONFIG, null, 4));
-  return DEFAULT_CONFIG;
- }
- return JSON.parse(Deno.readTextFileSync(CONFIG_FILE_PATH));
+export function getUsrConf(): MinecraftServerLauncherConf {
+ logger.debug('loading user config from:', USR_CONFIG_FILE_PATH);
+ return JSON.parse(Deno.readTextFileSync(USR_CONFIG_FILE_PATH));
+}
+
+export function setUsrConf(conf: MinecraftServerLauncherConf) {
+ writeFileAndDir(USR_CONFIG_FILE_PATH, JSON.stringify(conf, null, 4));
+}
+
+export function getSysConf(): MinecraftServerLauncherConf {
+ logger.debug('loading system config from:', SYS_CONFIG_FILE_PATH);
+ return JSON.parse(Deno.readTextFileSync(SYS_CONFIG_FILE_PATH));
 }

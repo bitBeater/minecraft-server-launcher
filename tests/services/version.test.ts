@@ -1,17 +1,17 @@
-import { getConf } from 'data/conf.ts';
 import { getInstalledVersions, getLatestInstalledVersion, getPreviousVersion } from 'services/version.ts';
 import { assertEquals } from 'std/assert/assert_equals.ts';
 import { join } from 'std/path/mod.ts';
 import { beforeAll, describe, it } from 'std/testing/bdd.ts';
-import { clearTmpDir } from '../test_utils/utils.ts';
+import { appConfig } from 'utils/config.ts';
+import { clearServerInstallationDir } from '../test_utils/utils.ts';
 
 describe('version service', () => {
  const mockInstallationDirs = ['1.1.0', '1.5.0', '2.0.0'];
 
  beforeAll(() => {
-  clearTmpDir();
+  clearServerInstallationDir();
   for (const dir of mockInstallationDirs) {
-   Deno.mkdirSync(join(getConf().serverInstallationDir, dir), { recursive: true });
+   Deno.mkdirSync(join(appConfig.serverInstallationDir, dir), { recursive: true });
   }
  });
 

@@ -1,57 +1,22 @@
 // @skip-test
+import { info } from 'cli/info.ts';
 import { install } from 'cli/install.ts';
 import { migrate } from 'cli/migrate.ts';
 import { run } from 'cli/run.ts';
 import { update } from 'cli/update.ts';
 import { listAvailableVersions, listInstalledVersions } from 'cli/version.ts';
 import { Command } from 'cliffy/command/mod.ts';
-import { getConf } from 'data/conf.ts';
 import { log } from 'iggs-utils';
-import { existsSync } from 'utils/fs.ts';
+import { existsSync } from 'std/fs/exists.ts';
+import { appConfig } from 'utils/config.ts';
 import { logger } from 'utils/logger.ts';
 
-/**
- *
-## Usage
-
-- **View Launcher Version**
-
-  ```sh
-  ./minecraft_server_launcher [-v | --version]
-  ```
-
-- **Launch the lastest installed mincreaft server**
-  ```sh
-  ./minecraft_server_launcher
-  ```
-- **Start a Specific Server Version**
-  ```sh
-  ./minecraft_server_launcher <version>
-  ```
-- **List Installed Servers**
-
-  ```sh
-  ./minecraft_server_launcher [-l | --list]
-  ```
-
-- **List Available Servers for download**
-
-  ```sh
-  ./minecraft_server_launcher [-la | --list-available]
-  ```
-
-- **Start a Specific Server Version**
-  ```sh
-  ./minecraft_server_launcher <version>
-  ```
-- **Install a Server**
-  ```sh
-  ./minecraft_server_launcher [i | install] <version> <optional: version to copy worlds and configs from>
-  ```
- */
-
-if (!existsSync(getConf().serverInstallationDir)) {
- Deno.mkdirSync(getConf().serverInstallationDir, { recursive: true });
+try {
+ if (!existsSync(appConfig.serverInstallationDir)) {
+  Deno.mkdirSync(appConfig.serverInstallationDir, { recursive: true });
+ }
+} catch (error) {
+ logger.error(error);
 }
 
 await new Command()
@@ -64,33 +29,38 @@ await new Command()
   if (options.debug) {
    logger.logLevel = log.LogLevel.DEBUG;
   }
-
-  await update();
+  try {
+   await update();
+  } catch (error) {
+   logger.error(error);
+  }
  })
- // COMANDS
  //  run
- .command('run')
- //  .default('run')
+ .default('run')
+ .command('run').alias('r')
  .arguments('[version:string]')
  .description('Launch a minecraft server specified by version. If no version is specified, the lastest installed version will be launched.')
  .action(run)
  // install
- .command('install', 'i')
+ .command('install').alias('i')
  .arguments('[install_version:string] [migration_version:string]')
  .description('Install a minecraft server specified by version. If no version is specified, the lastest available version will be installed.')
  .action(install)
  // migrate
- .command('migrate', 'm')
+ .command('migrate').alias('m')
  .arguments('[version_from:string] [version_to:string]')
  .description('Migrate worlds and configs from one version to another.')
  .action(migrate)
  // list installed servers
- .command('list', 'l')
+ .command('list').alias('l')
  .description('List installed servers.')
  .action(listInstalledVersions)
  // list available servers
- .command('list-available', 'la')
+ .command('list-available').alias('la')
  .description('List available servers.')
  .action(listAvailableVersions)
- // default command
+ // list available servers
+ .command('info')
+ .description('Display current configuration.')
+ .action(info)
  .parse(Deno.args);

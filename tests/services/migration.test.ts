@@ -1,27 +1,27 @@
-import { getConf } from 'data/conf.ts';
 import { migrate } from 'services/migration.ts';
 import { assertEquals } from 'std/assert/assert_equals.ts';
 import { copySync, existsSync } from 'std/fs/mod.ts';
 import { walkSync } from 'std/fs/walk.ts';
 import { join, resolve } from 'std/path/mod.ts';
 import { afterAll, beforeEach, describe, it } from 'std/testing/bdd.ts';
-import { JAR_SERVER_FILE_NAME } from 'utils/consts.ts';
-import { clearTmpDir, INSTALLED_SERVER_DIR } from '../test_utils/utils.ts';
+import { appConfig } from 'utils/config.ts';
+import { JAR_SERVER_FILE_NAME } from 'utils/paths.ts';
+import { clearServerInstallationDir, INSTALLED_SERVER_DIR } from '../test_utils/utils.ts';
 
 describe('migrate', () => {
  beforeEach(() => {
-  clearTmpDir();
+  clearServerInstallationDir();
  });
 
  afterAll(() => {
-  clearTmpDir();
+  clearServerInstallationDir();
  });
 
  it('should migrate files from one version to another', () => {
   const versionToMigrateFrom = '1.20.0';
   const versionToMigrateTo = '1.20.1';
-  const origPathRoot = resolve(getConf().serverInstallationDir, versionToMigrateFrom);
-  const destPathRoot = resolve(getConf().serverInstallationDir, versionToMigrateTo);
+  const origPathRoot = resolve(appConfig.serverInstallationDir, versionToMigrateFrom);
+  const destPathRoot = resolve(appConfig.serverInstallationDir, versionToMigrateTo);
 
   //copy installed server from assets to test dir
   copySync(INSTALLED_SERVER_DIR, origPathRoot);
@@ -42,8 +42,8 @@ describe('migrate', () => {
  it('should not migrate the server JAR file', () => {
   const versionToMigrateFrom = '1.20.0';
   const versionToMigrateTo = '1.20.1';
-  const origPathRoot = resolve(getConf().serverInstallationDir, versionToMigrateFrom);
-  const destPathRoot = resolve(getConf().serverInstallationDir, versionToMigrateTo);
+  const origPathRoot = resolve(appConfig.serverInstallationDir, versionToMigrateFrom);
+  const destPathRoot = resolve(appConfig.serverInstallationDir, versionToMigrateTo);
 
   //copy installed server from assets to test dir
   copySync(INSTALLED_SERVER_DIR, origPathRoot);

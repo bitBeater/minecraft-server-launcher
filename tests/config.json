@@ -1,22 +1,22 @@
 {
-  "serverInstallationDir": "./.tmp",
-  "versionManifestV2Url": "http://127.0.0.1:8765/version_manifest_v2",
-  "launchArgs": {
-    "default": {
-      "javaArgs": [
-        "-Xms4G",
-        "-Xmx8G",
-        "-XX:+UseG1GC",
-        "-XX:+ParallelRefProcEnabled",
-        "-XX:MaxGCPauseMillis=200",
-        "-XX:+UseLargePages",
-        "-XX:+AlwaysPreTouch",
-        "-XX:+UseStringDeduplication",
-        "-XX:+DisableExplicitGC",
-        "-XX:+UnlockExperimentalVMOptions",
-        "-XX:+OptimizeStringConcat"
-      ],
-      "serverArgs": ["--nogui"]
-    }
+ "serverInstallationDir": "./tmp",
+ "versionManifestV2Url": "http://127.0.0.1:8765/version_manifest_v2",
+ "launchArgs": {
+  "default": {
+   "javaArgs": [
+    "-Xms4G",
+    "-Xmx8G",
+    "-XX:+UseG1GC",
+    "-XX:+ParallelRefProcEnabled",
+    "-XX:MaxGCPauseMillis=200",
+    "-XX:+UseLargePages",
+    "-XX:+AlwaysPreTouch",
+    "-XX:+UseStringDeduplication",
+    "-XX:+DisableExplicitGC",
+    "-XX:+UnlockExperimentalVMOptions",
+    "-XX:+OptimizeStringConcat"
+   ],
+   "serverArgs": ["--nogui"]
   }
+ }
 }

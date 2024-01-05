@@ -4,14 +4,14 @@ import { existsEula } from 'data/eula.ts';
 import { assertEquals } from 'std/assert/assert_equals.ts';
 import { afterAll, afterEach, beforeEach, describe, it } from 'std/testing/bdd.ts';
 import { returnsNext, Stub, stub } from 'std/testing/mock.ts';
-import { clearTmpDir } from '../test_utils/utils.ts';
+import { clearServerInstallationDir } from '../test_utils/utils.ts';
 
 // spy(Confirm.prompt);
 
 describe('acceptEula', async () => {
- beforeEach(() => clearTmpDir());
+ beforeEach(() => clearServerInstallationDir());
  afterEach(() => promptStub.restore());
- afterAll(() => clearTmpDir());
+ afterAll(() => clearServerInstallationDir());
  let promptStub: Stub;
 
  await it('should write the EULA file if accepted', async () => {

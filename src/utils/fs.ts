@@ -1,7 +1,9 @@
-import { getConf } from 'data/conf.ts';
 import { existsSync } from 'std/fs/mod.ts';
+import { join } from 'std/path/join.ts';
 import { resolve } from 'std/path/resolve.ts';
-import { SERVER_PROPERTIES_FILE_NAME } from 'utils/consts.ts';
+import { appConfig } from 'utils/config.ts';
+import { logger } from 'utils/logger.ts';
+import { getOsUserHomeDir, SERVER_PROPERTIES_FILE_NAME } from './paths.ts';
 
 // export function existsSync(path: string): boolean {
 //  try {
@@ -21,6 +23,7 @@ import { SERVER_PROPERTIES_FILE_NAME } from 'utils/consts.ts';
  * @param options - Optional parameters for writing the file.
  */
 export function writeFileAndDir(path: string, data?: Uint8Array | string, options?: Deno.WriteFileOptions) {
+ logger.debug(`writing ${path}`);
  const parentDir = resolve(path, '..');
 
  if (!existsSync(parentDir)) {
@@ -32,6 +35,7 @@ export function writeFileAndDir(path: string, data?: Uint8Array | string, option
 }
 
 export function copyFileRecursive(origPath: string, destPath: string) {
+ logger.debug(`copying ${origPath} -> ${destPath}`);
  const destParentDir = resolve(destPath, '..');
 
  if (!existsSync(destParentDir)) {
@@ -42,9 +46,12 @@ export function copyFileRecursive(origPath: string, destPath: string) {
 }
 
 export function getServerPropertiesPath(version: string): string {
- return resolve(getConf().serverInstallationDir, version, SERVER_PROPERTIES_FILE_NAME);
+ return resolve(appConfig.serverInstallationDir, version, SERVER_PROPERTIES_FILE_NAME);
 }
 
+/**
+ * @deprecated
+ */
 export function renameToOld(path: string) {
  const oldPath = path + '_old';
 
@@ -55,15 +62,26 @@ export function renameToOld(path: string) {
  Deno.renameSync(path, oldPath);
 }
 
-export function getOsAppInstallPath(): string {
- switch (Deno.build.os) {
-  case 'linux':
-   return '/opt';
-  case 'windows':
-   return 'C:\\Program Files';
-  case 'darwin':
-   return '/Applications';
-  default:
-   throw new Error(`Unsupported OS: ${Deno.build.os}`);
+/**
+ * remove sync, without throwing NotFound error if it doesn't exist
+ * @param path
+ * @param options
+ */
+export function silentRemove(path: string | URL, options?: Deno.RemoveOptions) {
+ logger.debug(`removing ${path}`);
+ try {
+  Deno.removeSync(path, options);
+ } catch (error) {
+  if (!(error instanceof Deno.errors.NotFound)) throw error;
  }
+}
+
+const TILDE_NOTATION_REX = /^~[/|\\]?/;
+
+export function isTildeNotation(path: string) {
+ return TILDE_NOTATION_REX.test(path);
+}
+
+export function expandTilde(path: string): string {
+ return join(getOsUserHomeDir(), path.replace(TILDE_NOTATION_REX, ''));
 }

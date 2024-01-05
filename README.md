@@ -4,7 +4,8 @@ A Deno script for managing and updating Minecraft servers.
 
 ## Introduction
 
-This script automates the management of Minecraft server instances. It facilitates the installation, update, and management of multiple server versions, ensuring you're always up-to-date with the latest release from `piston-meta.mojang.com`.
+This script automates the management of Minecraft server instances. It facilitates the installation, update, and management of multiple server versions,
+ensuring you're always up-to-date with the latest release from `piston-meta.mojang.com`.
 
 ## Features
 
@@ -55,12 +56,12 @@ This script automates the management of Minecraft server instances. It facilitat
 
 ## Additional Information
 
-The script uses this endpoint to retrieve the latest game version:
-`https://piston-meta.mojang.com/mc/game/version_manifest_v2.json`
+The script uses this endpoint to retrieve the latest game version: `https://piston-meta.mojang.com/mc/game/version_manifest_v2.json`
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit pull requests, suggest features, or report issues. For major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome! Please feel free to submit pull requests, suggest features, or report issues. For major changes, please open an issue first to
+discuss what you would like to change.
 
 ## License
 
