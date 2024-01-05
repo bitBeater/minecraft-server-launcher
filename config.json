@@ -1,6 +1,6 @@
 {
   "serverInstallationDir": "~/.local/bin/minecraft-server",
-  "versionManifestV2Url": "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json",
+  "versionManifestV2Url": "http://127.0.0.1:8765/version_manifest_v2",
   "launchArgs": {
     "default": {
       "javaArgs": [
