@@ -1,3 +1,4 @@
+//@skip-test
 export interface VersionManifestV2 {
  latest: Latest;
  versions: Version[];

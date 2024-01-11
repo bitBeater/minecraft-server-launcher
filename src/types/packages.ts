@@ -1,3 +1,4 @@
+//@skip-test
 export interface Packages {
  arguments?: Arguments;
  assetIndex?: AssetIndex;
