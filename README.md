@@ -15,54 +15,70 @@ ensuring you're always up-to-date with the latest release from `piston-meta.moja
 
 ## Installation
 
-[Include detailed steps on how to install this script, along with any prerequisites needed.]
+To install the Minecraft Server Launcher, please visit the GitHub releases section of our repository and download the `misela` binary. Ensure you have the necessary permissions to execute the file.
+
+For more detailed instructions and prerequisites, refer to our [Installation Guide](#installation-guide).
 
 ## Usage
 
-- **View Launcher Version**
+The `misela` tool provides various commands for managing your Minecraft servers:
 
-  ```sh
-  ./minecraft_server_launcher [-v | --version]
-  ```
+- **Launch the latest installed Minecraft server**
 
-- **Launch the lastest installed mincreaft server**
-  ```sh
-  ./minecraft_server_launcher
-  ```
+  ~~~sh
+  misela run
+  ~~~
+
 - **Start a Specific Server Version**
-  ```sh
-  ./minecraft_server_launcher <version>
-  ```
+
+  ~~~sh
+  misela run <version>
+  ~~~
+
 - **List Installed Servers**
 
-  ```sh
-  ./minecraft_server_launcher [-l | --list]
-  ```
+  ~~~sh
+  misela list
+  ~~~
 
 - **List Available Servers for download**
 
-  ```sh
-  ./minecraft_server_launcher [-la | --list-available]
-  ```
+  ~~~sh
+  misela list-available
+  ~~~
 
-- **Start a Specific Server Version**
-  ```sh
-  ./minecraft_server_launcher <version>
-  ```
-- **Install a Server**
-  ```sh
-  ./minecraft_server_launcher [i | install] <version> <optional: version to copy worlds and configs from>
-  ```
+- **Install the Latest or a Specific Server Version**
+
+  ~~~sh
+  misela install [install_version] [migration_version]
+  ~~~
+
+- **Migrate Worlds and Configs Between Versions**
+
+  ~~~sh
+  misela migrate [version_from] [version_to]
+  ~~~
+
+- **Display Current Configuration**
+
+  ~~~sh
+  misela info
+  ~~~
+
+For a complete list of commands and options, run:
+
+~~~sh
+misela --help
+~~~
 
 ## Additional Information
 
-The script uses this endpoint to retrieve the latest game version: `https://piston-meta.mojang.com/mc/game/version_manifest_v2.json`
+The script interacts with Mojang's official metadata endpoint at `https://piston-meta.mojang.com/mc/game/version_manifest_v2.json` to retrieve the latest game versions.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit pull requests, suggest features, or report issues. For major changes, please open an issue first to
-discuss what you would like to change.
+We welcome contributions! If you'd like to improve the Minecraft Server Launcher, please submit pull requests, suggest features, or report issues. For significant changes, open an issue first to discuss what you would like to change.
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more details.

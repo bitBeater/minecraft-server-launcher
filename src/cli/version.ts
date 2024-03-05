@@ -9,5 +9,5 @@ export function listInstalledVersions() {
 
 export async function listAvailableVersions() {
  const versionManifestV2 = await getVersionManifestV2();
- console.log(versionManifestV2.versions.map((v) => v.id).join('\n'));
+ console.log(versionManifestV2.versions.map((v) => v.id).reverse().join('\n'));
 }
