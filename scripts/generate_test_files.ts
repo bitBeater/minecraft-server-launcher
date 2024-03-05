@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run -A
 /** script to generate an empty .test.ts file for each .ts file that doesnt have one*/
 import { writeFileAndDir } from 'utils/fs.ts';
-import { getSkipTestSrcs, sourceFilePathToTestFilePath } from './utils.ts';
+import { getSkipTestSrcs, sourceFilePathToTestFilePath } from './utils/utils.ts';
 
 const skipTestSrcFiles = getSkipTestSrcs();
 

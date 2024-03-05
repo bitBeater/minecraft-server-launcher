@@ -6,7 +6,6 @@
    "console": "integratedTerminal",
    "command": "run",
    "args": [
-    "--unstable",
     "-A",
     "${file}"
    ],

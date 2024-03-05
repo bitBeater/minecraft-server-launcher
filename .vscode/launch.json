@@ -13,7 +13,6 @@
    "runtimeExecutable": "/home/alex/.deno/bin/deno",
    "runtimeArgs": [
     "run",
-    "--unstable",
     "--config",
     "deno.jsonc",
     "--inspect-wait",
@@ -34,7 +33,6 @@
    "runtimeExecutable": "/home/alex/.deno/bin/deno",
    "runtimeArgs": [
     "run",
-    "--unstable",
     "--config",
     "deno.jsonc",
     "--inspect-wait",
@@ -54,7 +52,6 @@
    "runtimeExecutable": "/home/alex/.deno/bin/deno",
    "runtimeArgs": [
     "test",
-    "--unstable",
     "--config",
     "${workspaceFolder}/deno.jsonc",
     "--inspect-wait",

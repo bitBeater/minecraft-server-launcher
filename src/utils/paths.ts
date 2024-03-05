@@ -2,7 +2,7 @@
 import 'https://deno.land/x/dotenv@v3.2.2/load.ts';
 import { join } from 'std/path/join.ts';
 import { resolve } from 'std/path/resolve.ts';
-import { pkgInfo } from 'utils/package_info.ts';
+import { appInfo } from './app_info.ts';
 
 /**
  * Is in development mode?
@@ -13,17 +13,17 @@ const IS_DEV = Deno.env.get('DENO_ENV') === 'development';
 /**
  * Directory for storing app data during development.
  * This ensures that isn't required special permissions to write to the directory and it's isolated from system directories. */
-const DEV_ROOT_DIR = resolve(getOsUserHomeDir(), '.development', pkgInfo.name);
+const DEV_ROOT_DIR = resolve(getOsUserHomeDir(), '.development', appInfo.name);
 
 export const CONFIG_FILE_NAME = 'config.json';
 export const JAR_SERVER_FILE_NAME = 'server.jar';
 export const SERVER_PROPERTIES_FILE_NAME = 'server.properties';
 export const MINECRAFT_SERVER_DIR_NAME = 'minecraft-server';
 
-export const SHARED_DATA_DIR = _mkPath(getOsSharedDataDir(), pkgInfo.name);
-export const SYS_CONFIG_FILE_PATH = _mkPath(getOsSysConfDir(), pkgInfo.name, CONFIG_FILE_NAME);
-export const USR_CONFIG_FILE_PATH = _mkPath(getOsUsrConfDir(), pkgInfo.name, CONFIG_FILE_NAME);
-export const DEFAULT_SERVER_PROPERTIES_PATH = _mkPath(getOsSharedDataDir(), pkgInfo.name, SERVER_PROPERTIES_FILE_NAME);
+export const SHARED_DATA_DIR = _mkPath(getOsSharedDataDir(), appInfo.name);
+export const SYS_CONFIG_FILE_PATH = _mkPath(getOsSysConfDir(), appInfo.name, CONFIG_FILE_NAME);
+export const USR_CONFIG_FILE_PATH = _mkPath(getOsUsrConfDir(), appInfo.name, CONFIG_FILE_NAME);
+export const DEFAULT_SERVER_PROPERTIES_PATH = _mkPath(getOsSharedDataDir(), appInfo.name, SERVER_PROPERTIES_FILE_NAME);
 export const SERVER_INSTALLATION_DIR = _mkPath(getOsUserBinDir(), MINECRAFT_SERVER_DIR_NAME);
 
 function _mkPath(...chunks: string[]) {

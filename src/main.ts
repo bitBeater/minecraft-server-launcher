@@ -1,3 +1,4 @@
+import { appInfo } from 'utils/app_info.ts';
 // @skip-test
 import { info } from 'cli/info.ts';
 import { install } from 'cli/install.ts';
@@ -21,9 +22,9 @@ try {
 
 await new Command()
  //  .default('run')
- .name('minecraft_server_launcher')
- .version('0.0.1')
- .description('Minecraft Server Launcher')
+ .name(appInfo.name)
+ .version(appInfo.version)
+ .description(appInfo.description)
  .globalOption('-d, --debug', 'Enable debug output.')
  .globalAction(async (options) => {
   if (options.debug) {
