@@ -15,9 +15,8 @@ ensuring you're always up-to-date with the latest release from `piston-meta.moja
 
 ## Installation
 
-To install the Minecraft Server Launcher, please visit the GitHub releases section of our repository and download the `misela` binary. Ensure you have the necessary permissions to execute the file.
+To install the Minecraft Server Launcher, please visit the GitHub releases section of this repository.
 
-For more detailed instructions and prerequisites, refer to our [Installation Guide](#installation-guide).
 
 ## Usage
 
@@ -77,7 +76,7 @@ The script interacts with Mojang's official metadata endpoint at `https://piston
 
 ## Contributing
 
-We welcome contributions! If you'd like to improve the Minecraft Server Launcher, please submit pull requests, suggest features, or report issues. For significant changes, open an issue first to discuss what you would like to change.
+Contributions and advices are welcomed! If you'd like to improve the Minecraft Server Launcher, please submit pull requests, suggest features, or report issues. For significant changes, open an issue first to discuss what you would like to change.
 
 ## License
 
